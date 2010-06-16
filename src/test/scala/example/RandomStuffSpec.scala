@@ -12,5 +12,12 @@ class RandomStuff extends Spec with MustMatchers {
       RandomStuff.crappy_sum4(10, 20, 30) must be (70) // Adds ten for the hell of it
       RandomStuff.crappy_sum5(Array(10, 20, 30)) must be (60)
     }
+    
+    it("should be able to pass functions around") { 
+      var sum = 0
+      def sum_it(i:Int) = sum += i
+      RandomStuff.process_things(Array(10, 20, 30), sum_it)
+      sum must be (60)
+    }
   }
 }

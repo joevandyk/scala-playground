@@ -21,4 +21,8 @@ object RandomStuff {
   def crappy_sum4(args: Int*): Int = args.foldLeft(10)(_ + _) 
 
   def crappy_sum5(args: Array[Int]): Int = args.reduceLeft(_ + _)
+
+  def process_things(args: Array[Int], callback: Int => Unit) = {
+    
+  }
 }
