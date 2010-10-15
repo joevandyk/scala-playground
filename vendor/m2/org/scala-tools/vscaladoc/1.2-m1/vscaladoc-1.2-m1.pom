@@ -1,0 +1,258 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.scala-tools</groupId>
+    <artifactId>scala-tools-parent</artifactId>
+    <version>1.5</version>
+  </parent>
+  <artifactId>vscaladoc</artifactId>
+  <version>1.2-m1</version>
+  <name>${project.artifactId}</name>
+  <inceptionYear>2009</inceptionYear>
+
+  <ciManagement>
+    <system>hudson</system>
+    <url>http://scala-tools.org/hudson/job/vscaladoc</url>
+  </ciManagement>
+
+  <properties>
+    <scala.version>2.7.7</scala.version>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>scala-tools.org</id>
+      <name>Scala-Tools Maven2 Repository</name>
+      <url>http://scala-tools.org/repo-releases</url>
+    </repository>
+    <repository>
+      <id>oss.sonatype.org/github-releases</id>
+      <url>http://oss.sonatype.org/content/repositories/github-releases/</url>
+    </repository>
+<!--
+    <repository>
+      <id>repo-embedded</id>
+      <name>project repo</name>
+      <url>file://${basedir}/repo-embedded</url>
+    </repository>
+-->
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>oss.sonatype.org/github-releases</id>
+      <url>http://oss.sonatype.org/content/repositories/github-releases/</url>
+    </pluginRepository>
+    <pluginRepository>
+      <id>twdata-m2-repository</id>
+      <name>twdata.org Maven 2 Repository</name>
+      <url>http://twdata-m2-repository.googlecode.com/svn/</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.scala-lang</groupId>
+      <artifactId>scala-library</artifactId>
+      <version>${scala.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.scala-lang</groupId>
+      <artifactId>scala-compiler</artifactId>
+      <version>${scala.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.mylyn.wikitext</groupId>
+      <artifactId>wikitext</artifactId>
+      <version>0.9.4.I20090220-1600-e3x</version>
+      <!--optional>true</optional-->
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.mylyn.wikitext</groupId>
+      <artifactId>wikitext.textile</artifactId>
+      <version>0.9.4.I20090220-1600-e3x</version>
+      <!--optional>true</optional-->
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.mylyn.wikitext</groupId>
+      <artifactId>wikitext.textile</artifactId>
+      <version>0.9.4.I20090220-1600-e3x</version>
+      <!--optional>true</optional-->
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.mylyn.wikitext</groupId>
+      <artifactId>wikitext.confluence</artifactId>
+      <version>0.9.4.I20090220-1600-e3x</version>
+      <!--optional>true</optional-->
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.mylyn.wikitext</groupId>
+      <artifactId>wikitext.mediawiki</artifactId>
+      <version>0.9.4.I20090220-1600-e3x</version>
+      <!--optional>true</optional-->
+    </dependency>
+    <dependency>
+      <groupId>org.markdownj</groupId>
+      <artifactId>markdownj</artifactId>
+      <version>0.3.0-1.0.2b4</version>
+      <!--optional>true</optional-->
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.5</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <sourceDirectory>src/main/scala</sourceDirectory>
+    <testSourceDirectory>src/test/scala</testSourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>org.scala-tools</groupId>
+        <artifactId>maven-scala-plugin</artifactId>
+        <version>2.13.1</version>
+        <executions>
+          <execution>
+            <id>compile</id>
+            <goals>
+              <goal>compile</goal>
+              <goal>testCompile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>net.alchim31.maven</groupId> 
+        <artifactId>yuicompressor-maven-plugin</artifactId> 
+        <version>0.9</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>compress</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <nosuffix>true</nosuffix>
+          <aggregations>
+            <aggregation>
+              <!-- remove files after aggregation (default: false) -->
+              <removeIncluded>true</removeIncluded>
+              <!-- insert new line after each concatenation (default: false) -->
+              <insertNewLine>true</insertNewLine>
+              <output>${project.build.directory}/classes/org/scala_tools/vscaladoc/_highlighter/shAll.js</output>
+              <!--
+                files to include, path relative to output's directory or
+                absolute path
+              -->
+              <includes>
+                <include>shCore*.js</include>
+                <include>shBrush*.js</include>
+              </includes>
+            </aggregation>
+            <aggregation>
+              <!-- remove files after aggregation (default: false) -->
+              <removeIncluded>false</removeIncluded>
+              <!-- insert new line after each concatenation (default: false) -->
+              <insertNewLine>true</insertNewLine>
+              <output>${project.build.directory}/classes/org/scala_tools/vscaladoc/content.js</output>
+              <!--
+                files to include, path relative to output's directory or
+                absolute path
+              -->
+              <includes>
+                <include>content_0.js</include>
+                <include>cookie.js</include>
+              </includes>
+            </aggregation>
+            <aggregation>
+              <!-- remove files after aggregation (default: false) -->
+              <removeIncluded>false</removeIncluded>
+              <!-- insert new line after each concatenation (default: false) -->
+              <insertNewLine>true</insertNewLine>
+              <output>${project.build.directory}/classes/org/scala_tools/vscaladoc/all-classes.js</output>
+              <!--
+                files to include, path relative to output's directory or
+                absolute path
+              -->
+              <includes>
+                <include>all-classes_0.js</include>
+                <include>cookie.js</include>
+              </includes>
+            </aggregation>
+          </aggregations>
+        </configuration>
+      </plugin>
+            <plugin>
+                <artifactId>maven-invoker-plugin</artifactId>
+                <version>1.3</version>
+                <configuration>
+                    <debug>false</debug>
+                    <showErrors>true</showErrors>
+                    <projectsDirectory>src/it</projectsDirectory>
+                    <pomIncludes>  <pomInclude>**/pom.xml</pomInclude></pomIncludes>
+                    <pomExcludes>  <pomExclude>**/m*/pom.xml</pomExclude></pomExcludes>
+                    <preBuildHookScript>setup.groovy</preBuildHookScript>
+                    <postBuildHookScript>validate.groovy</postBuildHookScript>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>integration-test</id>
+                        <goals>
+                            <goal>install</goal>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+    </plugins>
+  </build>
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.scala-tools</groupId>
+        <artifactId>maven-scala-plugin</artifactId>
+        <configuration>
+          <vscaladocVersion>${project.version}</vscaladocVersion>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
+<!--
+  <profiles>
+    <profile>
+      <id>super-helpful-integration-tests</id>
+
+      <activation>
+        <property>
+          <name>shit</name>
+          <value>true</value>
+        </property>
+      </activation>
+
+      <build>
+        <defaultGoal>install</defaultGoal>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>shitty-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>clean</goal>
+                  <goal>install</goal>
+                  <goal>test</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+-->
+</project>
