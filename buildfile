@@ -17,7 +17,6 @@ repositories.remote << 'https://oss.sonatype.org/content/repositories/releases'
 
 desc "The Scala-playground project"
 define "scala-playground", :version => '0.001' do
-  package :jar
   project.version = VERSION_NUMBER
   project.group = GROUP
   compile.with transitive('org.scalatra:scalatra_2.8.0:jar:2.0.0.M1')

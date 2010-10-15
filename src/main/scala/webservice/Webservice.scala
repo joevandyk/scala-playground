@@ -1,4 +1,6 @@
-package org.scalatra
+package webservice
+
+import org.scalatra._
 
 class Webservice extends ScalatraServlet {
 
