@@ -8,14 +8,23 @@ COPYRIGHT = ""
 ENV['M2_REPO'] = File.join(File.dirname(__FILE__), 'vendor/m2')
 
 require 'buildr/scala'
+require 'buildr/jetty'
+require  'readline'
 
 # Specify Maven 2.0 remote repositories here, like this:
 repositories.remote << "http://www.ibiblio.org/maven2/"
+repositories.remote << 'https://oss.sonatype.org/content/repositories/releases'
 
 desc "The Scala-playground project"
 define "scala-playground", :version => '0.001' do
   package :jar
   project.version = VERSION_NUMBER
   project.group = GROUP
+  compile.with transitive('org.scalatra:scalatra_2.8.0:jar:2.0.0.M1')
   manifest["Implementation-Vendor"] = COPYRIGHT
+
+  task("jetty"=>[package(:war), jetty.use]) do |task|
+    jetty.deploy("http://localhost:8080", task.prerequisites.first)
+    Readline::readline('[Type ENTER to stop Jetty]')
+  end
 end

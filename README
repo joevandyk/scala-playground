@@ -1,3 +1,12 @@
 
+# Add buildr and jruby to your path
 export PATH=$PATH:$PWD/vendor/jruby/bin
-buildr package
+
+# Start the webserver
+buildr scala-playground:jetty
+
+# Show all the possible tasks
+buildr -T
+
+# Run the tests
+buildr test

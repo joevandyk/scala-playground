@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.scalatra</groupId>
+    <artifactId>scalatra-project_2.8.0</artifactId>
+    <packaging>pom</packaging>
+    <version>2.0.0.M1</version>
+    <name>scalatra-project</name>
+    <description>Scalatra Project POM</description>
+    <url>http://www.scalatra.org/</url>
+    <inceptionYear>2009</inceptionYear>
+    <organization>
+        <name>Scalatra Project</name>
+        <url>http://www.scalatra.org/</url>
+    </organization>
+    <licenses>
+        <license>
+            <name>BSD</name>
+            <url>http://github.com/scalatra/scalatra/raw/HEAD/LICENSE</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <mailingLists>
+        <mailingList>
+            <name>Scalatra user group</name>
+            <archive>http://groups.google.com/group/scalatra-user</archive>
+            <post>scalatra-user@googlegroups.com</post>
+            <subscribe>scalatra-user+subscribe@googlegroups.com</subscribe>
+            <unsubscribe>scalatra-user+unsubscribe@googlegroups.com</unsubscribe>
+        </mailingList>
+    </mailingLists>
+    <scm>
+        <connection>scm:git:git://github.com/scalatra/scalatra.git</connection>
+        <url>http://github.com/scalatra/scalatra</url>
+    </scm>
+    <developers>
+        <developer>
+            <id>riffraff</id>
+            <name>Gabriele Renzi</name>
+            <url>http://www.riffraff.info</url>
+        </developer>
+        <developer>
+            <id>alandipert</id>
+            <name>Alan Dipert</name>
+            <url>http://alan.dipert.org</url>
+        </developer>
+        <developer>
+            <id>rossabaker</id>
+            <name>Ross A. Baker</name>
+            <url>http://www.rossabaker.com/</url>
+        </developer>
+        <developer>
+            <id>chirino</id>
+            <name>Hiram Chirino</name>
+            <url>http://hiramchirino.com/blog/</url>
+        </developer>
+    </developers>
+    <profiles>
+        <!-- poms deployed to maven central CANNOT have a repositories
+                   section defined.  This download profile lets you 
+                   download dependencies other repos during development time. -->
+        <profile>
+            <id>download</id>
+            <repositories>
+                <repository>
+                    <id>FuseSourceSnapshotRepository</id>
+                    <name>FuseSource Snapshot Repository</name>
+                    <url>http://repo.fusesource.com/nexus/content/repositories/snapshots/</url>
+                </repository>
+                <repository>
+                    <id>ScalaToolsMaven2SnapshotsRepository</id>
+                    <name>Scala-Tools Maven2 Snapshots Repository</name>
+                    <url>http://scala-tools.org/repo-snapshots/</url>
+                </repository>
+                <repository>
+                    <id>ScalaToolsMaven2Repository</id>
+                    <name>Scala-Tools Maven2 Repository</name>
+                    <url>http://scala-tools.org/repo-releases/</url>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
+</project>
