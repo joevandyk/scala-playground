@@ -10,3 +10,22 @@ buildr -T
 
 # Run the tests
 buildr test
+
+
+STUFF LEFT TO DO
+
+- 'buildr cc' will automatically recompile stuff upon code updates. 
+  How can we get it to automatically run the tests as well?
+
+- What's the best way to get hot code reloading -- where you update
+  a file and Jetty automatically knows about it?
+
+- What's the best / easiest way to deploy a Jetty webservice?  Ideally,
+  all the Jars would be packaged up into a single file so the webserver
+  only needs Java installed on it.  Then, how do we upgrade the app?
+
+- Get the Scalatra service using the Scala classes we write.
+
+- Get our Scalatra code under tests
+
+- Get our code talking to a database.  I suppose sqlite is fine for now.
